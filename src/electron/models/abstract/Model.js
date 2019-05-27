@@ -1,0 +1,1 @@
+module.exports = (config, ...traits) => traits.reduce((model, trait) => trait(config)(model), {});
