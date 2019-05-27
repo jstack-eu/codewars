@@ -14,11 +14,21 @@ const broadcastState = (state) => broadcast('state', TransportableStateHelper.en
 const initialize = (IO) => {
 
     IO.on('connection', (socket) => {
+
+        console.log('Connected new client', Hash(socket));
+
         Clients[Hash(socket)] = socket;
 
         // Reads
-        socket.on('fetch-map', () => socket.emit('received-map', State.map()));
-        socket.on('fetch-players', () => socket.emit('received-players', State.players()));
+        socket.on('fetch-map', () => {
+            console.log('Received fetch-map request');
+            socket.emit('received-map', State.map())
+        });
+
+        socket.on('fetch-players', () => {
+            console.log('Received fetch-players request');
+            socket.emit('received-players', State.players())
+        });
 
         // Creates
         socket.on('new-player', (config) => IO.emit('player-received', State.addPlayer(config)));

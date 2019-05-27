@@ -1,6 +1,5 @@
 const State = require('game/State');
-
-const state = () => State;
+const Connector = require('communication/Connector');
 
 const create = () => {
     State.initialize();
@@ -10,7 +9,13 @@ const create = () => {
                                                         .map((y) => ({ walkable: x + y % 6 !== 0 }))))
 };
 
+const start = () => {
+
+
+
+};
+
 module.exports = {
-    state,
     create,
+    start
 };

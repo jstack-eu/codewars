@@ -41,7 +41,7 @@ const transport = () => [
 const addPlayer = (config) => {
     const player = Player({ hp: Settings.HP, ...config});
 
-    Players.push(player);
+    state.players.push(player);
 
     return player;
 };
@@ -49,9 +49,19 @@ const addPlayer = (config) => {
 const addBullet = (config) => {
     const bullet = Bullet({ damage: Settings.bulletDamage, ...config});
 
-    Bullets.push(bullet);
+    state.bullets.push(bullet);
 
     return bullet;
+};
+
+const tick = () => {
+
+    const tick = (model) => model.tick(state);
+
+    state.players.forEach(tick);
+    state.bullets.forEach(tick);
+
+
 };
 
 module.exports = {

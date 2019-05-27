@@ -5,11 +5,13 @@ const Nameable = require('models/traits/Nameable');
 
 const Player = ({
     color,
-    hp
+    hp,
+    nickname
 }) => (model) => {
 
     model.color = color;
     model.hp = hp;
+    model.nickname = nickname;
 
     model.tick = (state) => {
 
