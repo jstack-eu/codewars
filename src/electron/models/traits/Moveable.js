@@ -23,8 +23,6 @@ module.exports = ({
 
     model.tick = R.compose(model.tick, (state) => {
 
-        console.log('tick in Moveable' , state.speed);
-
         model.speed = state.speed;
 
         if (model.moving) {

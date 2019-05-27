@@ -102,7 +102,6 @@ module.exports = {
     bullets,
     map,
     settings,
-    Settings,
     generateMap,
     addPlayer,
     addBullet,
