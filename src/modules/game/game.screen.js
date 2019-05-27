@@ -6,8 +6,6 @@ import {drawBullet, drawPlayer, drawTile} from './gameDraw.service';
 import CodeEditor from './components/codeEditor';
 import {systemProps} from '@eu.jstack/theme-utils';
 
-const electron = window.require('electron').remote;
-
 const GlobalStyle = createGlobalStyle`
     body {
       margin: 0;
@@ -85,7 +83,6 @@ const GameScreen = observer(() => {
     useEffect(
         () => {
             if (nodes.length === 3) {
-                // your Hook now has a reference to the ref element.
                 // scale for retina screens
                 nodes.forEach(n => n.getContext('2d').scale(2, 2));
             }

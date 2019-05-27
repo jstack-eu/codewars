@@ -8,11 +8,12 @@ const CodeEditor = () => {
     return (
         <AceEditor
             mode="javascript"
-            height={250}
-            width={800}
+            height='250px'
+            width='800px'
             theme="solarized_dark"
             onChange={() => {}}
             name="code-editor"
+            highlightActiveLine={true}
             editorProps={{$blockScrolling: true}}
         />
     )

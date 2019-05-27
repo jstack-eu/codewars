@@ -23,7 +23,19 @@ class GameStore {
     }
 
     @action setBullets(bullets) {
-        this.bullets = bullets.map(([x, y, playerId]) => ({x, y, color: this.players.find(p => p.id === playerId).color}));
+        const mapBullets = ([x, y, playerId]) => {
+            const foundPlayer = this.players.find(p => p.id === playerId);
+
+            if (!foundPlayer) {
+                return null;
+            }
+
+            return {x, y, color: foundPlayer.color}
+        };
+
+        this.bullets = bullets
+            .map(mapBullets)
+            .filter((b) => b);
     }
 
     @action updatePlayers(players) {
