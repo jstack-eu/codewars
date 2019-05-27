@@ -7,7 +7,7 @@ const Settings = {
     tileYLength: 30,
     playerRadius: 10,
     HP: 100,
-    BulletDamage: 25
+    bulletDamage: 25
 };
 
 const state = {
@@ -39,7 +39,7 @@ const transport = () => [
 ];
 
 const addPlayer = (config) => {
-    const player = Player(config);
+    const player = Player({ hp: Settings.HP, ...config});
 
     Players.push(player);
 
@@ -47,7 +47,7 @@ const addPlayer = (config) => {
 };
 
 const addBullet = (config) => {
-    const bullet = Bullet(config);
+    const bullet = Bullet({ damage: Settings.bulletDamage, ...config});
 
     Bullets.push(bullet);
 

@@ -4,10 +4,12 @@ const Moveable = require('models/traits/Moveable');
 const Nameable = require('models/traits/Nameable');
 
 const Player = ({
-    color
+    color,
+    hp
 }) => (model) => {
 
     model.color = color;
+    model.hp = hp;
 
     model.tick = (state) => {
 
@@ -16,7 +18,7 @@ const Player = ({
         return state;
     };
 
-    model.asTransportableState = () => [model.id, model.x, model.y];
+    model.asTransportableState = () => [model.id, model.x, model.y, model.hp];
 
     return model;
 };
