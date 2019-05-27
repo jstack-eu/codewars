@@ -1,5 +1,8 @@
+const State = require('game/State');
+
 module.exports = (App) => {
 
-    App.get()
+    App.get('/game/configuration', (req, res) => res.status(200).send(State.settings()));
+    App.get('/game/map', (req, res) => res.status(200).send(State.map()));
 
 };
