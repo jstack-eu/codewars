@@ -1,6 +1,6 @@
 const State = require('game/State');
 const Connector = require('communication/sockets/Connector');
-const TimerHelper = require('helpers/TimerHelper');
+const TimerHelper = require('game/helpers/TimerHelper');
 
 const TPS = 30;
 const TickDelay = 1000 / TPS;
