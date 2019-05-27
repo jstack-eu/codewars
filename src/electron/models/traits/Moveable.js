@@ -1,3 +1,5 @@
+const DirectionHelper = require('game/helpers/DirectionHelper');
+
 module.exports = ({
     x = 0,
     y = 0,
@@ -23,19 +25,16 @@ module.exports = ({
 
     model.tick = R.compose(model.tick, (state) => {
 
-        model.speed = state.speed;
+        const StateManager = require('game/State');
 
         if (model.moving) {
-            if (direction.up) model.y -= speed;
-            if (direction.down) model.y += speed;
-            if (direction.left) model.x -= speed;
-            if (direction.right) model.x += speed;
+            DirectionHelper.increaseByDirection(model, model.direction, model.speed);
         }
 
         const dissolve = () => {
             // TODO: how to know what needs to be dissolved? I need the model type here... for now only bullets can dissolve...
             if (model.dissolveOnHit)
-                State.removeBullet(model.id);
+                StateManager.removeBullet(model.id);
         };
 
         // normalize positions and dissolve on hit

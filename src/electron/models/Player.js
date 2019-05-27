@@ -1,6 +1,6 @@
 const Model = require('models/abstract/Model');
 
-const State = require('game/State');
+const DirectionHelper = require('game/helpers/DirectionHelper');
 
 const Moveable = require('models/traits/Moveable');
 const Nameable = require('models/traits/Nameable');
@@ -24,10 +24,12 @@ const Player = ({
 
     model.tick = (state) => {
 
-        const State = require('game/State');
+        // TODO: Weird require that is needed here... is bad for performance... but who cares atm.
+        const StateManager = require('game/State');
 
         if (model.shooting && Date.now() > model.lastShotFired + model.shootingDelay) {
-            State.addBullet({ x: model.x, y: model.y, player: model.id });
+            StateManager.addBullet(DirectionHelper.increaseByDirection({ x: model.x, y: model.y, player: model.id }, model.direction, StateManager.settings().playerRadius + 3));
+            model.lastShotFired = Date.now();
         }
 
         return state;
