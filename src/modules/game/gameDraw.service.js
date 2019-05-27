@@ -24,5 +24,5 @@ export const drawPlayer = ({context, x, y, color}) => {
 };
 
 export const drawBullet = ({context, x, y, color}) => {
-    drawCircle({context, x, y, radius: GameStoreInstance.gameSettings.bulletRadius, color: 'white'});
+    drawCircle({context, x, y, radius: GameStoreInstance.gameSettings.bulletRadius, color: color});
 };
