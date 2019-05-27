@@ -3,7 +3,7 @@ const encodeSection = (section) => section.reduce(byCharCodes, '');
 const encode = (payload) => payload.map(encodeSection).join('-');
 
 const decode = (encoded) => {
-    const amounts = [3,2,3];
+    const amounts = [4,2];
 
     const sections = encoded.split('-');
 
