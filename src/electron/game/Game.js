@@ -2,6 +2,8 @@ const State = require('game/State');
 const Connector = require('communication/sockets/Connector');
 
 const TPS = 30;
+const TickDelay = 1000 / TPS;
+const CommunicationDelay = 2500;
 
 const TimerHelper = require('helpers/TimerHelper');
 
@@ -19,9 +21,10 @@ const start = () => {
 
         State.tick();
 
-        Connector.broadcastState(State.asTransportableState());
+        // Delaying sending the message to the clients
+        setTimeout(Connector.broadcastState(State.asTransportableState()), CommunicationDelay);
 
-    }, 1000 / TPS);
+    }, TickDelay);
 
 };
 
