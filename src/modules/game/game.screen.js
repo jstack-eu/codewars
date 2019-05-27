@@ -52,7 +52,7 @@ const GameScreen = observer(() => {
             y: player.y,
             color: player.color
         }));
-        gameStore.bullets.map(bullet => drawBullet({
+        gameStore.bullets.map(bullet => console.log('drawing ', bullet) || drawBullet({
             context: bulletsNode.getContext('2d'),
             x: bullet.x,
             y: bullet.y
@@ -70,7 +70,6 @@ const GameScreen = observer(() => {
     const drawBullets = () => {
 
     };
-
 
     const addNodeRef = (ref) => {
         if (!ref) {

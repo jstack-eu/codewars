@@ -23,7 +23,7 @@ class GameStore {
     }
 
     @action setBullets(bullets) {
-        this.bullets = bullets;
+        this.bullets = bullets.map(([x, y, playerId]) => ({x, y, playerId}));
     }
 
     @action updatePlayers(players) {
