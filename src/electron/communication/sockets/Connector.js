@@ -31,7 +31,7 @@ const initialize = (IO) => {
         });
 
         // Creates
-        socket.on('new-player', (config) => IO.emit('player-received', State.addPlayer(config)));
+        socket.on('new-player', (config) => console.log('new player') || IO.emit('player-received', State.addPlayer(config)));
     });
 
 };
