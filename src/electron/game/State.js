@@ -1,3 +1,6 @@
+const Player = require('models/Player');
+const Bullet = require('models/Bullet');
+
 const Settings = {
     tileSize: 16,
     tileXLength: 50,
@@ -35,8 +38,21 @@ const transport = () => [
     bullets().map(asTransportableState)
 ];
 
-const addPlayer = (player) => Players.push(player);
-const addBullet = (bullet) => Bullets.push(bullet);
+const addPlayer = (config) => {
+    const player = Player(config);
+
+    Players.push(player);
+
+    return player;
+};
+
+const addBullet = (config) => {
+    const bullet = Bullet(config);
+
+    Bullets.push(bullet);
+
+    return bullet;
+};
 
 module.exports = {
     initialize,
@@ -45,5 +61,7 @@ module.exports = {
     bullets,
     map,
     settings,
-    generateMap
+    generateMap,
+    addPlayer,
+    addBullet
 };

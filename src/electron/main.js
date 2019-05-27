@@ -10,6 +10,10 @@ module.exports = (App, window) => {
     const HTTP = require('http').Server(Api);
     const IO = require('socket.io')(HTTP);
 
+    const Cors = require('cors');
+
+    Api.use(Cors());
+
     require('game/Game').create();
 
     require('communication/routes/GameRoutes')(Api);
