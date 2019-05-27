@@ -1,7 +1,5 @@
 const increaseByDirection = (model, direction, amount) => {
 
-    console.log(direction, amount);
-
     if (direction.up) model.y -= amount;
     if (direction.down) model.y += amount;
     if (direction.left) model.x -= amount;
