@@ -21,4 +21,6 @@ module.exports = (App, window) => {
 
     HTTP.listen(9001, () => console.log('listening on *:9001'));
 
+    require('communication/Sockets/Connector').initialize(IO);
+
 };
