@@ -5,32 +5,35 @@
   "homepage": "./",
   "main": "scripts/start.js",
   "dependencies": {
+    "@eu.jstack/theme-utils": "^0.0.4",
     "app-module-path": "^2.2.0",
     "axios": "^0.18.0",
     "cors": "^2.8.5",
     "dayjs": "^1.7.7",
     "express": "^4.17.1",
-    "mobx": "^5.6.0",
-    "mobx-react": "^5.3.6",
+    "mobx": "^5.9.4",
+    "mobx-react-lite": "^1.3.1",
     "object-hash": "^1.3.1",
     "polished": "^2.3.1",
     "prop-types": "^15.6.2",
     "ramda": "^0.26.1",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.2",
     "socket.io": "^2.2.0",
-    "styled-components": "^4.0.3"
+    "socket.io-client": "^2.2.0",
+    "styled-components": "^4.2.0",
+    "styled-system": "4.2.2"
   },
   "scripts": {
     "start": "nf start -p 3000",
-    "build": "react-scripts build",
+    "build": "react-app-rewired build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "electron": "electron .",
     "electron-start": "node scripts/electron-wait-react",
-    "react-start": "BROWSER=none react-scripts start",
+    "react-start": "BROWSER=none react-app-rewired start",
     "pack": "build --dir",
     "dist": "npm run build && build",
     "postinstall": "install-app-deps"
@@ -42,7 +45,9 @@
   "devDependencies": {
     "electron": "^4.0.0",
     "electron-builder": "^20.42.0",
-    "extract-text-webpack-plugin": "^4.0.0-beta.0"
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "customize-cra": "^0.2.12",
+    "react-app-rewired": "^2.1.0"
   },
   "build": {
     "appId": "eu.jstack.codewars",

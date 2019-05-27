@@ -1,5 +1,4 @@
 const State = require('game/State');
-const Connector = require('communication/Connector');
 
 const create = () => {
     State.initialize();
