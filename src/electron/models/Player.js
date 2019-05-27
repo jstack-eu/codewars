@@ -25,7 +25,7 @@ const Player = ({
     model.tick = (state) => {
 
         if (model.shooting && Date.now() > model.lastShotFired + model.shootingDelay) {
-            State.addBullet({ x: model.x, y: model.y });
+            State.addBullet({ x: model.x, y: model.y, player: model.id });
         }
 
         return state;
