@@ -6,6 +6,7 @@ class GameStore {
     @observable map = [];
     @observable gameSettings = null;
     @observable players = [];
+    @observable bullets = [];
 
     constructor() {
         this.fetchGameSettings()
@@ -14,7 +15,28 @@ class GameStore {
     }
 
     @action addNewPlayer(player) {
+        if (this.players.some(p => p.id === player.id)) {
+            return;
+        }
+
         this.players = [...this.players, player];
+    }
+
+    @action setBullets(bullets) {
+        this.bullets = bullets;
+    }
+
+    @action updatePlayers(players) {
+        this.players = this.players.map((player) => {
+            const foundPlayer = players.find(([id]) => player.id === id);
+
+            if (foundPlayer) {
+                const [id, x, y, hp] = foundPlayer;
+                return {...player, x, y, hp};
+            }
+
+            return player;
+        });
     }
 
     @action fetchInitialMap() {

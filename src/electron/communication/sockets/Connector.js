@@ -7,7 +7,7 @@ const Clients = {  };
 
 const clients = () => Object.values(Clients);
 
-const broadcast = (name, data) => Object.values().forEach((socket) => socket.send(name, data));
+const broadcast = (name, data) => Object.values(Clients).forEach((socket) => socket.emit(name, data));
 
 const broadcastState = (state) => broadcast('state', TransportableStateHelper.encode(state));
 

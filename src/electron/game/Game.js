@@ -21,7 +21,7 @@ const start = () => {
         const transportableState = State.tick();
 
         // Delaying sending the message to the clients
-        setTimeout(Connector.broadcastState(transportableState), CommunicationDelay);
+        setTimeout(() => Connector.broadcastState(transportableState), CommunicationDelay);
 
     }, TickDelay);
 

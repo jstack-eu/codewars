@@ -40,7 +40,7 @@ const bullets = () => state.bullets;
 const map = () => state.map;
 const settings = () => Settings;
 
-const asTransportableState = ({ getTransportableState }) => getTransportableState();
+const asTransportableState = ({ asTransportableState }) => asTransportableState();
 
 const transport = () => [
     players().map(asTransportableState),

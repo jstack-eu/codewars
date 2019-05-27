@@ -22,3 +22,7 @@ export const drawPlayer = ({context, x, y, color}) => {
         color: '#CCEBA6'
     });
 };
+
+export const drawBullet = ({context, x, y, color}) => {
+    drawCircle({context, x, y, radius: GameStoreInstance.gameSettings.bulletRadius, color: 'white'});
+};

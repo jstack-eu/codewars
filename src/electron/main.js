@@ -14,12 +14,16 @@ module.exports = (App, window) => {
 
     Api.use(Cors());
 
-    require('game/Game').create();
+    const Game = require('game/Game');
 
     require('communication/routes/GameRoutes')(Api);
     require('communication/routes/PlayerRoutes')(Api);
 
-    HTTP.listen(9001, () => console.log('listening on *:9001'));
+    HTTP.listen(9001, () => {
+        console.log('listening on *:9001');
+        Game.create();
+        Game.start();
+    });
 
     require('communication/sockets/Connector').initialize(IO);
 

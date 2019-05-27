@@ -1,6 +1,7 @@
 import socketIOClient from 'socket.io-client';
 import {api} from '../../shared/api';
 import {GameStoreInstance} from './game.store';
+import {decode} from '../../shared/decode.helper';
 
 export const fetchMap = () => api.get('/game/map');
 export const fetchGameSettings = () => api.get('/game/configuration');
@@ -10,6 +11,13 @@ export const setupWsConnection = () => {
 
     socket.on('connect', () => console.log('connected!'));
     socket.on('player-received', (player) => GameStoreInstance.addNewPlayer(player));
+    socket.on('state', (data) => {
+        const [players, bullets] = decode(data);
+        console.log('state ', players, bullets);
+        GameStoreInstance.updatePlayers(players);
+        GameStoreInstance.setBullets(bullets);
+    });
+
     socket.emit('new-player', {
         x: 40,
         y: 40,
