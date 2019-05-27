@@ -2,11 +2,11 @@ const Model = require('models/abstract/Model');
 
 const Moveable = require('models/traits/Moveable');
 
-const Bullet = () => (model) => {
+const Bullet = ({
+    id
+}) => (model) => {
 
     model.tick = (state) => {
-
-        console.log('tick in Bullet');
 
         return state;
     };

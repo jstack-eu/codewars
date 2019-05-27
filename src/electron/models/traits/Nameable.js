@@ -1,8 +1,8 @@
 module.exports = ({
-    name
+    nickname
 }) => (model) => {
 
-    model.name = name;
+    model.nickname = nickname;
 
     return model;
 };

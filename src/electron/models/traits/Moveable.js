@@ -1,19 +1,28 @@
+const State = require('game/State');
+const Settings = State.settings();
+
 module.exports = ({
-  x = 0,
-  y = 0,
-  walking = false,
-  speed = 1,
-  direction = { up: false, down: true, left: false, right: false }
+    x = 0,
+    y = 0,
+    moving = false,
+    speed = 1,
+    direction = { up: false, down: true, left: false, right: false },
+    dissolveOnHit = false,
+    radius = 0
 }) => (model) => {
 
     model.x = x;
     model.y = y;
 
-    model.walking = walking;
+    model.moving = moving;
 
     model.speed = speed;
 
     model.direction = direction;
+
+    model.radius = radius;
+
+    model.dissolveOnHit = dissolveOnHit;
 
     model.tick = R.compose(model.tick, (state) => {
 
@@ -21,12 +30,44 @@ module.exports = ({
 
         model.speed = state.speed;
 
-        // if (model.walking) {
-        //     if (direction.up) model.y -= speed;
-        //     if (direction.down) model.y += speed;
-        //     if (direction.left) model.x -= speed;
-        //     if (direction.right) model.x += speed;
-        // }
+        if (model.moving) {
+            if (direction.up) model.y -= speed;
+            if (direction.down) model.y += speed;
+            if (direction.left) model.x -= speed;
+            if (direction.right) model.x += speed;
+        }
+
+        const dissolve = () => {
+            // TODO: how to know what needs to be dissolved? I need the model type here... for now only bullets can dissolve...
+            if (model.dissolveOnHit)
+                State.removeBullet(model.id);
+        };
+
+        // normalize positions and dissolve on hit
+        if (model.y - model.radius < 0) {
+            model.y = 0 + model.radius;
+
+            dissolve();
+        }
+
+        if (model.y + model.radius > Settings.tileYLength * Settings.tileSize) {
+            model.y = Settings.tileYLength * Settings.tileSize - model.radius;
+
+            dissolve();
+        }
+
+        if (model.x - model.radius < 0) {
+            model.x = 0 + model.radius;
+
+            dissolve();
+        }
+
+        if (model.x + model.radius > Settings.tileXLength * Settings.tileSize) {
+            model.x = Settings.tileXLength * Settings.tileSize - model.radius;
+
+            dissolve();
+        }
+
 
         return state;
     });

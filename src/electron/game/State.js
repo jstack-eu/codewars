@@ -1,13 +1,18 @@
 const Player = require('models/Player');
 const Bullet = require('models/Bullet');
+const UUID = require('uuid/v4');
 
 const Settings = {
     tileSize: 16,
     tileXLength: 50,
     tileYLength: 30,
     playerRadius: 10,
+    playerShootingDelay: 1000,
     HP: 100,
-    bulletDamage: 25
+    playerSpeed: 1,
+    bulletDamage: 25,
+    bulletSpeed: 3,
+    bulletRadius: 5
 };
 
 const state = {
@@ -45,7 +50,13 @@ const transport = () => [
 const addPlayer = (config) => {
 
     // TODO: Free up the sequence ID whenever a player leaves...
-    const player = Player({ hp: Settings.HP, id: playerSequence++, ...config});
+    const player = Player({
+        id: playerSequence++,
+        hp: Settings.HP,
+        speed: Settings.playerSpeed,
+        radius: Settings.playerRadius,
+        shootingDelay: Settings.playerShootingDelay,
+    ...config});
 
     state.players.push(player);
 
@@ -53,11 +64,23 @@ const addPlayer = (config) => {
 };
 
 const addBullet = (config) => {
-    const bullet = Bullet({ damage: Settings.bulletDamage, ...config});
+    const bullet = Bullet({
+        id: UUID(),
+        damage: Settings.bulletDamage,
+        speed: Settings.bulletSpeed,
+        moving: true,
+        dissolveOnHit: true,
+        radius: Settings.bulletRadius,
+        direction: { up: false, down: true, left: false, right: false },
+    ...config});
 
     state.bullets.push(bullet);
 
     return bullet;
+};
+
+const removeBullet = (id) => {
+    state.bullets = state.bullets.filter((bullet) => bullet.id !== id);
 };
 
 const tick = () => {
@@ -81,5 +104,6 @@ module.exports = {
     generateMap,
     addPlayer,
     addBullet,
+    removeBullet,
     tick
 };
