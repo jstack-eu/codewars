@@ -14,7 +14,6 @@ export const setupWsConnection = () => {
     socket.on('state', (data) => {
         const [players, bullets] = decode(data);
         GameStoreInstance.updatePlayers(players);
-        console.log('bullets ', bullets);
         GameStoreInstance.setBullets(bullets);
     });
 
