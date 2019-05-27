@@ -1,9 +1,9 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import styled, {createGlobalStyle} from 'styled-components';
-import {drawCircle, drawCircleStroke, drawRectangle} from '../../shared/canvasDraw.helper';
 import GameStore from './game.store';
 import {observer} from 'mobx-react-lite';
-import {drawTile} from './gameDraw.service';
+import {drawPlayer, drawTile} from './gameDraw.service';
+
 const electron = window.require('electron').remote;
 
 const GlobalStyle = createGlobalStyle`
@@ -20,16 +20,15 @@ const CanvasContainer = styled.div`
 `;
 
 const Canvas = styled.canvas`
-  border: 1px solid red;
-  width: 800px;
-  height: 480px;
+    width: 800px;
+    height: 480px;
 `;
 
 const GameScreen = observer(() => {
     const gameStore = useContext(GameStore);
     const [node, setRef] = useState(null);
 
-    const draw = () => {
+    const drawMap = () => {
         gameStore.map.map((row, rowIndex) => {
             row.map((col, colIndex) => {
                 drawTile({context: node.getContext('2d'), x: colIndex * 16, y: rowIndex * 16, walkable: col.walkable});
@@ -37,38 +36,24 @@ const GameScreen = observer(() => {
         });
     };
 
-    /*const draw = () => {
-        drawCircle({context: node.getContext('2d'), x: 50, y: 50, radius: 5, color: '#FF0000'});
-        drawPlayer();
-        drawTile();
-    };*/
-
-    /*const drawPlayer = () => {
-        drawCircle({context: node.getContext('2d'), x: 100, y: 100, radius: 10, color: 'yellow'});
-        drawCircleStroke({
+    const drawPlayers = () => {
+        gameStore.players.map(player => drawPlayer({
             context: node.getContext('2d'),
-            x: 100,
-            y: 100,
-            radius: 10,
-            start: 1.5 * Math.PI,
-            end: 0.5 * Math.PI,
-            color: '#CCEBA6'
-        });
+            x: player.x,
+            y: player.y,
+            color: player.color
+        }));
     };
 
-    const drawTile = () => {
-        drawRectangle({context: node.getContext('2d'), x: 0, y: 0, sizeX: 16, sizeY: 16, color: '#1D1A3A'});
-        drawRectangle({context: node.getContext('2d'), x: 16, y: 16, sizeX: 16, sizeY: 16, color: '#6158E0'});
-    };*/
-
-    useEffect(draw, [gameStore.map]);
+    useEffect(drawMap, [gameStore.map]);
+    useEffect(drawPlayers, [gameStore.players]);
 
     useEffect(
         () => {
             if (node) {
                 // your Hook now has a reference to the ref element.
                 // scale for retina screens
-                node.getContext('2d').scale(2,2);
+                node.getContext('2d').scale(2, 2);
             }
         },
         [node],
@@ -82,7 +67,8 @@ const GameScreen = observer(() => {
                     height={960}
                     width={1600}
                     ref={setRef}
-                    onClick={e => {}}
+                    onClick={e => {
+                    }}
                 />
             </CanvasContainer>
         </React.Fragment>

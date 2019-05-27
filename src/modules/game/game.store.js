@@ -5,11 +5,16 @@ import {fetchGameSettings, fetchMap, setupWsConnection} from './gameApi.service'
 class GameStore {
     @observable map = [];
     @observable gameSettings = null;
+    @observable players = [];
 
     constructor() {
         this.fetchGameSettings()
             .then(() => this.fetchInitialMap())
             .then(() => setupWsConnection())
+    }
+
+    @action addNewPlayer(player) {
+        this.players = [...this.players, player];
     }
 
     @action fetchInitialMap() {
@@ -20,10 +25,7 @@ class GameStore {
 
     @action fetchGameSettings() {
         return fetchGameSettings()
-            .then(({data}) => {
-                console.log('data ', data);
-                this.gameSettings = data
-            })
+            .then(({data}) => this.gameSettings = data)
             .catch(err => console.error('Fetching game settings failed ', err));
     }
 }
