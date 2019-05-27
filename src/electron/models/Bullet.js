@@ -16,4 +16,4 @@ const Bullet = () => (model) => {
     return model;
 };
 
-module.exports = (config) => Model(config, Player, Moveable, Nameable);
+module.exports = (config) => Model(config, Bullet, Moveable);
