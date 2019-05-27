@@ -1,49 +1,46 @@
-import React, { Component } from 'react';
-import styled, {createGlobalStyle, ThemeProvider} from 'styled-components';
-import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
+import React, {Component} from 'react';
+import {createGlobalStyle, ThemeProvider} from 'styled-components';
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 import ServerScreen from './modules/server/server.screen';
 import ClientScreen from './modules/client/client.screen';
 import HomeScreen from './modules/home/home.screen';
 import GameScreen from './modules/game/game.screen';
 import {theme} from './shared/styles/theme';
-import {systemProps} from '@eu.jstack/theme-utils';
+import Header from './modules/header/header';
 
 const GlobalStyles = createGlobalStyle`
     body {
         margin: 0;
-        padding: 0;     
-        font-family: "Lato", sans-serif;
+        padding: 0;
+        font-family: 'Titillium Web', sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: ${props => props.theme.colors.basePurple};
     }
 `;
 
-const StyledContent = styled.div`
-    ${systemProps.common};
-    height: 100%;
-`;
-
 class App extends Component {
-  render() {
-    return (
-        <ThemeProvider theme={theme}>
-            <React.Fragment>
-                <BrowserRouter>
-                    <React.Fragment>
-                        <GlobalStyles />
-                        <StyledContent p={3}>
+    render() {
+        return (
+            <ThemeProvider theme={theme}>
+                <React.Fragment>
+                    <BrowserRouter>
+                        <React.Fragment>
+                            <Header/>
+                            <GlobalStyles/>
                             <Switch>
-                                <Route path="/home" component={ HomeScreen } />
-                                <Route path="/server" component={ ServerScreen } />
-                                <Route path="/client" component={ ClientScreen } />
-                                <Route path="/game" component={ GameScreen } />
-                                <Redirect to="/game" />
+                                <Route path="/home" component={HomeScreen}/>
+                                <Route path="/server" component={ServerScreen}/>
+                                <Route path="/client" component={ClientScreen}/>
+                                <Route path="/game" component={GameScreen}/>
+                                <Redirect to="/game"/>
                             </Switch>
-                        </StyledContent>
-                    </React.Fragment>
-                </BrowserRouter>
-            </React.Fragment>
-        </ThemeProvider>
-    );
-  }
+                        </React.Fragment>
+                    </BrowserRouter>
+                </React.Fragment>
+            </ThemeProvider>
+        );
+    }
 }
 
 export default App;

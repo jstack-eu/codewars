@@ -10,7 +10,7 @@ let window;
 function createWindow() {
     require('../src/electron/main')(app, window);
 
-    window = new BrowserWindow({ width: 1036, height: 830 });
+    window = new BrowserWindow({ width: 1036, height: 836 });
 
     window.loadURL(
         process.env.ELECTRON_START_URL ||

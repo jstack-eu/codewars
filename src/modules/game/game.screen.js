@@ -1,20 +1,10 @@
 import React, {useContext, useEffect, useState} from 'react';
-import styled, {createGlobalStyle} from 'styled-components';
+import styled from 'styled-components';
 import GameStore from './game.store';
 import {observer} from 'mobx-react-lite';
 import {drawBullet, drawPlayer, drawTile} from './gameDraw.service';
 import CodeEditor from './components/codeEditor';
 import {systemProps} from '@eu.jstack/theme-utils';
-
-const GlobalStyle = createGlobalStyle`
-    body {
-      margin: 0;
-      padding: 0;
-      font-family: 'Roboto', sans-serif;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
-`;
 
 const Canvas = styled.canvas`
     position: absolute;
@@ -22,6 +12,10 @@ const Canvas = styled.canvas`
     height: 480px;
     
     ${systemProps.position}
+`;
+
+const GameViewContainer = styled.div`
+    ${systemProps.common}
 `;
 
 const CodeEditorContainer = styled.div`
@@ -39,7 +33,12 @@ const GameScreen = observer(() => {
 
         gameStore.map.map((row, rowIndex) => {
             row.map((col, colIndex) => {
-                drawTile({context: mapNode.getContext('2d'), x: colIndex * 16, y: rowIndex * 16, walkable: col.walkable});
+                drawTile({
+                    context: mapNode.getContext('2d'),
+                    x: colIndex * 16,
+                    y: rowIndex * 16,
+                    walkable: col.walkable
+                });
             });
         });
     };
@@ -92,28 +91,30 @@ const GameScreen = observer(() => {
 
     return (
         <React.Fragment>
-            <GlobalStyle/>
-            <Canvas
-                id='player-canvas'
-                zIndex={3}
-                height={960}
-                width={1600}
-                ref={addNodeRef}
-            />
-            <Canvas
-                id='bullets-canvas'
-                zIndex={2}
-                height={960}
-                width={1600}
-                ref={addNodeRef}
-            />
-            <Canvas
-                id='map-canvas'
-                zIndex={1}
-                height={960}
-                width={1600}
-                ref={addNodeRef}
-            />
+            <GameViewContainer p={3}>
+                <Canvas
+                    id='player-canvas'
+                    zIndex={3}
+                    height={960}
+                    width={1600}
+                    ref={addNodeRef}
+                />
+                <Canvas
+                    id='bullets-canvas'
+                    zIndex={2}
+                    height={960}
+                    width={1600}
+                    ref={addNodeRef}
+                />
+                <Canvas
+                    id='map-canvas'
+                    zIndex={1}
+                    height={960}
+                    width={1600}
+                    ref={addNodeRef}
+                />
+            </GameViewContainer>
+
             <CodeEditorContainer>
                 <CodeEditor/>
             </CodeEditorContainer>

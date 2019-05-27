@@ -7,11 +7,16 @@ class GameStore {
     @observable gameSettings = null;
     @observable players = [];
     @observable bullets = [];
+    @observable scriptCode = `function run() {\n\n}`;
 
     constructor() {
         this.fetchGameSettings()
             .then(() => this.fetchInitialMap())
             .then(() => setupWsConnection())
+    }
+
+    @action setScriptCode(script) {
+        this.scriptCode = script;
     }
 
     @action addNewPlayer(player) {
