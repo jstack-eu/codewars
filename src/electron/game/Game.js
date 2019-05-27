@@ -18,10 +18,10 @@ const start = () => {
 
     TimerHelper(() => {
 
-        State.tick();
+        const transportableState = State.tick();
 
         // Delaying sending the message to the clients
-        setTimeout(Connector.broadcastState(State.asTransportableState()), CommunicationDelay);
+        setTimeout(Connector.broadcastState(transportableState), CommunicationDelay);
 
     }, TickDelay);
 

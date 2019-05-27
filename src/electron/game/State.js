@@ -61,6 +61,7 @@ const tick = () => {
     state.players.forEach(tick);
     state.bullets.forEach(tick);
 
+    return transport();
 
 };
 
