@@ -5,8 +5,8 @@ import {BrowserRouter, Switch, Route, Redirect} from 'react-router-dom';
 import './App.css';
 import {Theme} from './shared/styles/theme.styles';
 import Header from './shared/components/header.component';
-import DelineateScreen from './modules/server/server.screen';
-import NormalizeScreen from './modules/client/client.screen';
+import ServerScreen from './modules/server/server.screen';
+import ClientScreen from './modules/client/client.screen';
 import HomeScreen from './modules/home/home.screen';
 
 const GlobalStyles = createGlobalStyle`
@@ -41,8 +41,8 @@ class App extends Component {
                         <StyledContent>
                             <Switch>
                                 <Route path="/home" component={ HomeScreen } />
-                                <Route path="/server" component={ DelineateScreen } />
-                                <Route path="/client" component={ NormalizeScreen } />
+                                <Route path="/server" component={ ServerScreen } />
+                                <Route path="/client" component={ ClientScreen } />
                                 <Redirect to="/home" />
                             </Switch>
                         </StyledContent>

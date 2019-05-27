@@ -8,7 +8,6 @@ const url = require('url');
 let window;
 
 function createWindow() {
-    console.log('DO STUFF');
     require('../src/electron/main')(app, window);
 
     window = new BrowserWindow({ width: 800, height: 600 });
