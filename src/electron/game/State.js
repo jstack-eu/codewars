@@ -43,6 +43,8 @@ const transport = () => [
 ];
 
 const addPlayer = (config) => {
+
+    // TODO: Free up the sequence ID whenever a player leaves...
     const player = Player({ hp: Settings.HP, id: playerSequence++, ...config});
 
     state.players.push(player);
