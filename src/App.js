@@ -15,7 +15,7 @@ const GlobalStyles = createGlobalStyle`
         font-family: 'Titillium Web', sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        background-color: ${props => props.theme.colors.basePurple};
+        background-color: ${props => props.theme.colors.backgroundColor};
     }
 `;
 

@@ -3,7 +3,7 @@ import AceEditor from 'react-ace';
 import {observer} from 'mobx-react-lite';
 
 import 'brace/mode/javascript';
-import 'brace/theme/solarized_dark';
+import 'brace/theme/twilight';
 import GameStore from '../game.store';
 
 const CodeEditor = observer(() => {
@@ -14,7 +14,8 @@ const CodeEditor = observer(() => {
             mode="javascript"
             height='228px'
             width='100%'
-            theme="solarized_dark"
+            theme="twilight"
+            fontSize={14}
             onChange={(v) => gameStore.setScriptCode(v)}
             value={gameStore.scriptCode}
             name="code-editor"

@@ -1,5 +1,6 @@
 import {drawCircle, drawCircleStroke, drawRectangle} from '../../shared/canvasDraw.helper';
 import {GameStoreInstance} from './game.store';
+import {theme} from '../../shared/styles/theme';
 
 export const drawTile = ({context, x, y, walkable}) => drawRectangle({
     context,
@@ -7,7 +8,7 @@ export const drawTile = ({context, x, y, walkable}) => drawRectangle({
     y,
     sizeX: GameStoreInstance.gameSettings.tileSize,
     sizeY: GameStoreInstance.gameSettings.tileSize,
-    color: walkable ? '#1D1A3A' : '#6158E0'
+    color: walkable ? theme.colors.backgroundColor : theme.colors.baseGrey
 });
 
 export const drawPlayer = ({context, x, y, color}) => {
