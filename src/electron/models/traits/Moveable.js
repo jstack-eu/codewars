@@ -1,6 +1,3 @@
-const State = require('game/State');
-const Settings = State.settings();
-
 module.exports = ({
     x = 0,
     y = 0,
@@ -50,8 +47,8 @@ module.exports = ({
             dissolve();
         }
 
-        if (model.y + model.radius > Settings.tileYLength * Settings.tileSize) {
-            model.y = Settings.tileYLength * Settings.tileSize - model.radius;
+        if (model.y + model.radius > state.settings.tileYLength * state.settings.tileSize) {
+            model.y = state.settings.tileYLength * state.settings.tileSize - model.radius;
 
             dissolve();
         }
@@ -62,8 +59,8 @@ module.exports = ({
             dissolve();
         }
 
-        if (model.x + model.radius > Settings.tileXLength * Settings.tileSize) {
-            model.x = Settings.tileXLength * Settings.tileSize - model.radius;
+        if (model.x + model.radius > state.settings.tileXLength * state.settings.tileSize) {
+            model.x = state.settings.tileXLength * state.settings.tileSize - model.radius;
 
             dissolve();
         }

@@ -27,6 +27,7 @@ const initialize = (map) => {
     state.players = [];
     state.bullets = [];
     state.map = map;
+    state.settings = Settings;
 
     playerSequence = 1;
 };
@@ -101,6 +102,7 @@ module.exports = {
     bullets,
     map,
     settings,
+    Settings,
     generateMap,
     addPlayer,
     addBullet,
