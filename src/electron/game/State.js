@@ -16,10 +16,14 @@ const state = {
     map: null
 };
 
+let playerSequence = 1;
+
 const initialize = (map) => {
     state.players = [];
     state.bullets = [];
     state.map = map;
+
+    playerSequence = 1;
 };
 
 const generateMap = (generator) => {
@@ -39,7 +43,7 @@ const transport = () => [
 ];
 
 const addPlayer = (config) => {
-    const player = Player({ hp: Settings.HP, ...config});
+    const player = Player({ hp: Settings.HP, id: playerSequence++, ...config});
 
     state.players.push(player);
 
@@ -74,5 +78,6 @@ module.exports = {
     settings,
     generateMap,
     addPlayer,
-    addBullet
+    addBullet,
+    tick
 };
