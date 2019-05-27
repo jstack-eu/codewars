@@ -75,10 +75,6 @@ const GameScreen = observer(() => {
         setRefs(nodes);
     };
 
-    useEffect(drawTiles, [gameStore.map]);
-    useEffect(drawPlayers, [gameStore.players]);
-    useEffect(drawBullets, [gameStore.bullets]);
-
     useEffect(
         () => {
             if (nodes.length === 3) {
@@ -88,6 +84,10 @@ const GameScreen = observer(() => {
         },
         [nodes],
     );
+
+    useEffect(drawTiles, [gameStore.map]);
+    useEffect(drawPlayers, [gameStore.players]);
+    useEffect(drawBullets, [gameStore.bullets]);
 
     return (
         <React.Fragment>

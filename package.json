@@ -5,6 +5,7 @@
   "homepage": "./",
   "main": "scripts/start.js",
   "dependencies": {
+    "@eu.jstack/react-button": "0.0.17",
     "@eu.jstack/theme-utils": "^0.0.4",
     "app-module-path": "^2.2.0",
     "axios": "^0.18.0",

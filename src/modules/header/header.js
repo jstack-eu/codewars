@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {systemProps} from '@eu.jstack/theme-utils';
 import codeWarsLogoSrc from '../../shared/resources/images/code-wars-logo-white.svg';
+import {withRouter} from 'react-router-dom';
 
 const HeaderContainer = styled.div`
     display: flex;
@@ -14,7 +15,18 @@ const Title = styled.div`
     ${systemProps.typography}
 `;
 
-const Header = () => {
+const excludedPaths = [
+    '/home'
+];
+
+const Header = (props) => {
+    const {pathname} = props.location;
+    console.log('path name ', pathname);
+
+    if (excludedPaths.includes(pathname)) {
+        return null;
+    }
+
     return (
         <HeaderContainer px={5} py={5}>
             <img src={codeWarsLogoSrc} height={30} alt='logo'/>
@@ -23,4 +35,4 @@ const Header = () => {
     )
 };
 
-export default Header;
+export default withRouter(Header);
