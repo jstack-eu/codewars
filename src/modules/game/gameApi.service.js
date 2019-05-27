@@ -13,7 +13,6 @@ export const setupWsConnection = () => {
     socket.on('player-received', (player) => GameStoreInstance.addNewPlayer(player));
     socket.on('state', (data) => {
         const [players, bullets] = decode(data);
-        console.log('state ', players, bullets);
         GameStoreInstance.updatePlayers(players);
         GameStoreInstance.setBullets(bullets);
     });
@@ -21,6 +20,7 @@ export const setupWsConnection = () => {
     socket.emit('new-player', {
         x: 40,
         y: 40,
-        color: 'red'
+        color: 'red',
+        shooting: true
     });
 };

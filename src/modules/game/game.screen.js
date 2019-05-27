@@ -59,6 +59,19 @@ const GameScreen = observer(() => {
         }))
     };
 
+    const drawTiles = () => {
+
+    };
+
+    const drawPlayers = () => {
+
+    };
+
+    const drawBullets = () => {
+
+    };
+
+
     const addNodeRef = (ref) => {
         if (!ref) {
             return;
@@ -71,7 +84,7 @@ const GameScreen = observer(() => {
 
     useEffect(
         () => {
-            if (nodes.length === 2) {
+            if (nodes.length === 3) {
                 // your Hook now has a reference to the ref element.
                 // scale for retina screens
                 nodes.forEach(n => n.getContext('2d').scale(2, 2));
@@ -89,7 +102,6 @@ const GameScreen = observer(() => {
                 height={960}
                 width={1600}
                 ref={addNodeRef}
-                onClick={e => {}}
             />
             <Canvas
                 id='bullets-canvas'
@@ -97,7 +109,6 @@ const GameScreen = observer(() => {
                 height={960}
                 width={1600}
                 ref={addNodeRef}
-                onClick={e => {}}
             />
             <Canvas
                 id='map-canvas'
@@ -105,7 +116,6 @@ const GameScreen = observer(() => {
                 height={960}
                 width={1600}
                 ref={addNodeRef}
-                onClick={e => {}}
             />
             <CodeEditorContainer>
                 <CodeEditor/>
