@@ -2,7 +2,7 @@ import socketIOClient from 'socket.io-client';
 import {api} from '../../shared/api';
 import {GameStoreInstance} from './game.store';
 import {decode} from '../../shared/decode.helper';
-import {theme} from '../../shared/styles/theme';
+import theme from '../../shared/styles/theme';
 
 export const fetchMap = () => api.get('/game/map');
 export const fetchGameSettings = () => api.get('/game/configuration');

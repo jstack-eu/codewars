@@ -1,4 +1,4 @@
-export const theme = {
+let theme = {
     name: 'Code Wars',
     colors: {
         backgroundColor: '#262b2f',
@@ -25,3 +25,13 @@ export const theme = {
         }
     }
 };
+
+const extendedTheme = {
+    ...theme,
+    colors: {
+        ...theme.colors,
+        primaryBase: theme.colors.baseOrange,
+    }
+};
+
+export default extendedTheme;

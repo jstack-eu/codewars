@@ -16,12 +16,13 @@ const Title = styled.div`
 `;
 
 const excludedPaths = [
-    '/home'
+    '/home',
+    '/client/nickname',
+    '/client/ip'
 ];
 
 const Header = (props) => {
     const {pathname} = props.location;
-    console.log('path name ', pathname);
 
     if (excludedPaths.includes(pathname)) {
         return null;
