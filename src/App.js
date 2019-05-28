@@ -1,12 +1,13 @@
 import React from 'react';
 import {createGlobalStyle, ThemeProvider} from 'styled-components';
-import {BrowserRouter, Redirect, Route, Switch, withRouter} from 'react-router-dom';
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 import ServerScreen from './modules/server/server.screen';
-import ClientScreen from './modules/client/client.screen';
+import ClientStepOneScreen from './modules/client/clientStepOne.screen';
 import HomeScreen from './modules/home/home.screen';
 import GameScreen from './modules/game/game.screen';
-import {theme} from './shared/styles/theme';
+import theme from './shared/styles/theme';
 import Header from './modules/header/header';
+import ClientStepTwoScreen from './modules/client/clientStepTwo.screen';
 
 const GlobalStyles = createGlobalStyle`
     body {
@@ -30,7 +31,8 @@ const App = () => {
                         <Switch>
                             <Route path="/home" component={HomeScreen}/>
                             <Route path="/server" component={ServerScreen}/>
-                            <Route path="/client" component={ClientScreen}/>
+                            <Route path="/client/nickname" component={ClientStepOneScreen}/>
+                            <Route path="/client/ip" component={ClientStepTwoScreen}/>
                             <Route path="/game" component={GameScreen}/>
                             <Redirect to="/home"/>
                         </Switch>

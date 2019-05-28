@@ -34,9 +34,9 @@ const HomeScreen = ({history}) => {
             <Introduction mb={6} color='greys.2'>
                 Code Wars is a sandbox game in which you will write code to take control of the player
             </Introduction>
-            <PrimaryButton onClick={() => history.push('/game')} bg='baseOrange'>Join existing game</PrimaryButton>
+            <PrimaryButton onClick={() => history.push('/client/nickname')}>Join existing game</PrimaryButton>
             <Spacer mt={5}/>
-            <SecondaryButton color='baseOrange'>Create new game</SecondaryButton>
+            <SecondaryButton>Create new game</SecondaryButton>
         </HomeScreenContainer>
     )
 };

@@ -1,6 +1,6 @@
 import {drawCircle, drawCircleStroke, drawRectangle} from '../../shared/canvasDraw.helper';
 import {GameStoreInstance} from './game.store';
-import {theme} from '../../shared/styles/theme';
+import theme from '../../shared/styles/theme';
 
 export const drawTile = ({context, x, y, walkable}) => drawRectangle({
     context,
