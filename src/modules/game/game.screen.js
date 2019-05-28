@@ -59,7 +59,7 @@ const GameScreen = observer(() => {
     const drawBullets = () => {
         const [playerNode, bulletsNode] = nodes;
 
-        playerNode.getContext('2d').clearRect(0, 0, 1600, 960);
+        bulletsNode.getContext('2d').clearRect(0, 0, 1600, 960);
 
         gameStore.bullets.map(bullet => drawBullet({
             context: bulletsNode.getContext('2d'),
