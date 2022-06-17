@@ -35,7 +35,7 @@
   },
   "browserslist": [],
   "devDependencies": {
-    "electron": "^4.0.0",
+    "electron": "^15.5.5",
     "electron-builder": "^20.42.0",
     "extract-text-webpack-plugin": "^4.0.0-beta.0"
   },
